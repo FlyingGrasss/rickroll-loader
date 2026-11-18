@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="A small demo where every page switch is a rickroll loading screen. Plain HTML, CSS, and JavaScript.">
+  <title>Rickroll Loader — every page switch is a rickroll</title>
+  <link rel="stylesheet" href="styles.css">
+  <noscript>
+    <style>.overlay { display: none !important; }</style>
+  </noscript>
+</head>
+<body>
+  <div class="page" id="page">
+    <header class="site-header">
+      <span class="brand">Rickroll Loader</span>
+      <span class="build-note">plain HTML · CSS · JS</span>
+    </header>
+
+    <nav class="nav" aria-label="Demo pages">
+      <button type="button" class="nav-button is-active" data-section="home" aria-current="page">Home</button>
+      <button type="button" class="nav-button" data-section="about">About</button>
+      <button type="button" class="nav-button" data-section="gallery">Gallery</button>
+    </nav>
+
+    <main class="content" id="main" tabindex="-1">
+      <section class="panel" data-panel="home">
+        <p class="eyebrow">Proof of concept</p>
+        <h1>Every page switch is a rickroll.</h1>
+        <p class="lede">Pick another page above. The loader returns for about 1.2 seconds, complete with a silent YouTube cameo, and only then does the next section appear.</p>
+        <p class="muted">First load runs the full 2.5-second version. The skip button is there for the impatient.</p>
+      </section>
+
+      <section class="panel" data-panel="about" hidden>
+        <p class="eyebrow">About</p>
+        <h2>Small, static, and deliberately annoying.</h2>
+        <p class="lede">This demo uses no build step, no package manager, and no framework. Four files: HTML, CSS, JavaScript, and a README.</p>
+        <p class="muted">If YouTube cannot load within 1.5 seconds, the video area turns into a spinning cassette placeholder, so the joke keeps working offline.</p>
+      </section>
+
+      <section class="panel" data-panel="gallery" hidden>
+        <p class="eyebrow">Gallery</p>
+        <h2>Three placeholders, zero images.</h2>
+        <div class="gallery">
+          <div class="gallery-card"><span>01</span><p>Placeholder</p></div>
+          <div class="gallery-card"><span>02</span><p>Placeholder</p></div>
+          <div class="gallery-card"><span>03</span><p>Placeholder</p></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>No rickrolls were harmed in the making of this demo.</p>
+    </footer>
+  </div>
+
+  <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="loadingLabel">
+    <div class="overlay-inner">
+      <div class="media" id="media">
+        <iframe
+          id="rickroll"
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&amp;mute=1&amp;controls=0&amp;rel=0&amp;playsinline=1"
+          title="Rick Astley — Never Gonna Give You Up"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          allowfullscreen></iframe>
+
+        <div class="cassette" aria-hidden="true">
+          <div class="cassette-shell">
+            <span class="reel"></span>
+            <span class="reel"></span>
+            <span class="cassette-note">🎵</span>
+          </div>
+          <p class="cassette-caption">YouTube blocked — spinning the tape instead.</p>
+        </div>
+      </div>
+
+      <div class="status">
+        <span class="spinner" aria-hidden="true"></span>
+        <p class="loading-label" id="loadingLabel">Loading...</p>
+        <div class="progress" aria-hidden="true">
+          <span class="progress-bar" id="progressBar"></span>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="skip" id="skipButton">skip</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
